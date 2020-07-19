@@ -10,9 +10,13 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void getData() async {
-   Response response =  await get('https://jsonplaceholder.typicode.com/todos/1');
-   Map data = jsonDecode(response.body);
-   print(data['title']);
+    //make the request and wait for the data
+     Response response =  await get('http://worldtimeapi.org/api/timezone/Asia/Dhaka');
+     Map data = jsonDecode(response.body);
+     String  dateTime = data['datetime'];
+   //print(dateTime);
+     DateTime  now = DateTime.parse(dateTime);
+     print(now);
   }
 
   @override
