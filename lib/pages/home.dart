@@ -10,7 +10,23 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  SafeArea(child: Text('Home screen')),
+      appBar: AppBar(
+        title: Text('Home'),
+        centerTitle: true,
+      ),
+      body:  Column(
+        children: <Widget>[
+          Text('Home screen'),
+          FlatButton.icon(
+            color: Colors.pinkAccent,
+            onPressed: (){
+              Navigator.pushNamed(context, '/choose_location');
+            },
+            icon: Icon(Icons.edit_location),
+              label: Text("choose location"),
+          )
+        ],
+      ),
     );
   }
 }
