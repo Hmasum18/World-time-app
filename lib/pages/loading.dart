@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:world_time_app/utils/world_time.dart';
 
+final String TAG = 'Loading';
+
 class Loading extends StatefulWidget {
   @override
   _LoadingState createState() => _LoadingState();
@@ -14,8 +16,12 @@ class _LoadingState extends State<Loading> {
   void setUpWorldTimeApi() async{
     WorldTime worldTimeInstance = WorldTime(location: 'Dhaka',flag: 'dhaka.png',  url: 'Asia/Dhaka');
     await worldTimeInstance.getTime(); //wait until getTime function get function get the time from the worldtime api
-    print(worldTimeInstance.time);
-    Navigator.pushNamed(context, '/home');
+    print('$TAG : ${worldTimeInstance.time} ');
+   Navigator.pushReplacementNamed(context, '/home',arguments: {
+     'location' : worldTimeInstance.location,
+     'flag' : worldTimeInstance.flag,
+     'time' : worldTimeInstance.time,
+   });
   }
 
   @override
