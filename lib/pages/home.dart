@@ -22,18 +22,40 @@ class _HomeState extends State<Home> {
         title: Text('Home'),
         centerTitle: true,
       ),
-      body:  Column(
-        children: <Widget>[
-          Text('Home screen'),
-          FlatButton.icon(
-            color: Colors.pinkAccent,
-            onPressed: (){
-              Navigator.pushNamed(context, '/choose_location');
-            },
-            icon: Icon(Icons.edit_location),
-              label: Text("choose location"),
-          )
-        ],
+      body:  Padding(
+        padding: const EdgeInsets.fromLTRB(0,110,0,0),
+        child: Column(
+          children: <Widget>[
+            FlatButton.icon(
+              color: Colors.pinkAccent,
+              onPressed: (){
+                Navigator.pushNamed(context, '/choose_location');
+              },
+              icon: Icon(Icons.edit_location),
+                label: Text("choose location"),
+            ),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  data['location'],
+                  style: TextStyle(
+                    letterSpacing: 2,
+                    fontSize: 30,
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 20.0,),
+            Text(
+              data['time'],
+              style: TextStyle(
+                fontSize: 70.0,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
