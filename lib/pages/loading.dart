@@ -19,11 +19,13 @@ class _LoadingState extends State<Loading> {
     WorldTime worldTimeInstance = WorldTime(location: 'Dhaka',flag: 'dhaka.png',  url: 'Asia/Dhaka');
     await worldTimeInstance.getTime(); //wait until getTime function get function get the time from the worldtime api
     print('$TAG : ${worldTimeInstance.time} ');
+    //show the loading widget for 2 seconds
     await Future.delayed(Duration(seconds: 2));
     Navigator.pushReplacementNamed(context, '/home',arguments: {
      'location' : worldTimeInstance.location,
      'flag' : worldTimeInstance.flag,
      'time' : worldTimeInstance.time,
+      'isDay' : worldTimeInstance.isDay,
    });
   }
 
@@ -35,7 +37,7 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: Colors.blue,
       body: Center(
         child: SpinKitWave(
           color: Colors.white,
