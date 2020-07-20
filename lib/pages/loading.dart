@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 import 'package:world_time_app/utils/world_time.dart';
 
@@ -17,7 +19,8 @@ class _LoadingState extends State<Loading> {
     WorldTime worldTimeInstance = WorldTime(location: 'Dhaka',flag: 'dhaka.png',  url: 'Asia/Dhaka');
     await worldTimeInstance.getTime(); //wait until getTime function get function get the time from the worldtime api
     print('$TAG : ${worldTimeInstance.time} ');
-   Navigator.pushReplacementNamed(context, '/home',arguments: {
+    await Future.delayed(Duration(seconds: 2));
+    Navigator.pushReplacementNamed(context, '/home',arguments: {
      'location' : worldTimeInstance.location,
      'flag' : worldTimeInstance.flag,
      'time' : worldTimeInstance.time,
@@ -32,9 +35,12 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Text('Loading'),
+      backgroundColor: Colors.cyan,
+      body: Center(
+        child: SpinKitWave(
+          color: Colors.white,
+          size: 50,
+        ),
       ),
     );
   }
